@@ -1,0 +1,15 @@
+Name: Jarvis – Your Personal AI Assistant
+
+Tagline: Manage tasks, summarize content, and interact with tools effortlessly using natural language.
+
+Core Features:
+
+Understands text and voice commands to perform tasks intelligently.
+
+Summarizes PDFs and webpages while retaining key points and sentiment.
+
+Answers questions accurately using Retrieval-Augmented Generation (RAG).
+
+Controls external apps like Spotify via natural language commands.
+
+Simple, user-friendly interface built with Next.js frontend and Python FastAPI backend, powered by Gemini AI API.
