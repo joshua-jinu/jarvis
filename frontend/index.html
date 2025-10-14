@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-cyan-300">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S - GenAI Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden font-mono">
+
+  <!-- Glowing Circle -->
+  <div class="absolute top-20 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+
+  <!-- Header -->
+  <div class="z-10 text-center space-y-2 mb-10">
+    <h1 class="text-5xl font-bold tracking-widest">J.A.R.V.I.S</h1>
+    <p class="text-cyan-400 text-lg">Just A Rather Very Intelligent System</p>
+    <p class="text-sm text-cyan-500/70">Your personal GenAI powered by advanced natural language and voice understanding.</p>
+  </div>
+
+  <!-- Message Interface -->
+  <div class="z-10 bg-cyan-900/10 border border-cyan-500/40 rounded-2xl p-6 w-[90%] md:w-[600px] backdrop-blur-md shadow-lg">
+    <div id="chat-box" class="h-60 overflow-y-auto space-y-3 text-sm p-2">
+      <div class="bg-cyan-800/20 border border-cyan-500/30 rounded-lg p-3 w-fit">Good evening, sir. How may I assist you today?</div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="flex items-center gap-3 mt-4">
+      <input id="user-input" type="text" placeholder="Type your message..." 
+        class="flex-grow bg-transparent border border-cyan-500/30 rounded-lg p-2 text-cyan-200 placeholder-cyan-600 focus:outline-none focus:border-cyan-400">
+      
+      <!-- Voice Button -->
+      <button id="voice-btn" class="p-2 border border-cyan-400 rounded-full hover:bg-cyan-400/20 transition">
+        🎙️
+      </button>
+
+      <!-- Upload Button -->
+      <label for="file-upload" class="p-2 border border-cyan-400 rounded-full hover:bg-cyan-400/20 transition cursor-pointer">
+        📄
+      </label>
+      <input id="file-upload" type="file" class="hidden" />
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="z-10 mt-10 text-cyan-700 text-xs text-center">
+    <p>© 2025 J.A.R.V.I.S GenAI | Powered by Voice + LLM Intelligence</p>
+  </footer>
+
+  <!-- Background Grid Lines -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.1)_0%,transparent_70%)] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+  <script>
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const voiceBtn = document.getElementById("voice-btn");
+
+    // Simple text send
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter" && input.value.trim()) {
+        const msg = document.createElement("div");
+        msg.className = "bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 self-end text-right";
+        msg.textContent = input.value;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        input.value = "";
+      }
+    });
+
+    // Voice recognition
+    voiceBtn.addEventListener("click", () => {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert("Voice recognition not supported in this browser.");
+        return;
+      }
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.start();
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        input.value = transcript;
+      };
+    });
+
+    // File upload
+    document.getElementById("file-upload").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const msg = document.createElement("div");
+        msg.className = "bg-cyan-700/20 border border-cyan-500/30 rounded-lg p-3";
+        msg.textContent = `📄 Uploaded: ${file.name}`;
+        chatBox.appendChild(msg);
+      }
+    });
+  </script>
+</body>
+</html>
