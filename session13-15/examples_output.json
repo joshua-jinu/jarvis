@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Chat + Voice Interaction",
+    "description": "Interact via text/voice.",
+    "techStack": ["next.js", "TailwindCSS", "web Speech API"],
+    "voiceSupport": true,
+    "api": "Google TTS (pyttsx3)",
+    "notes": "supports commands and feedback",
+    "addedDate": "2024-03-01",
+    "component": "ChatVoiceInteractionModule"
+  },
+  {
+    "name": "PDF Summary",
+    "description": "upload PDF for Gemini to answer",
+    "techStack": ["Python", "FastAPI", "PyMuPDF"],
+    "voiceSupport": false,
+    "api": "Gemini",
+    "notes": "reads PDF & keeps context",
+    "addedDate": "2024-04-01",
+    "component": "PdfSummaryModule"
+  },
+  {
+    "name": "Spotify Control",
+    "description": "Play / pause / skip",
+    "techStack": ["Spotify Web API"],
+    "voiceSupport": true,
+    "api": "Spotify",
+    "notes": "needs user auth",
+    "addedDate": "2024-05-01",
+    "component": "SpotifyControlModule"
+  },
+  {
+    "name": "Webpage Summarization",
+    "description": "URL scrape and answer",
+    "techStack": ["newspaper3k", "bs4"],
+    "voiceSupport": true,
+    "api": null,
+    "notes": null,
+    "addedDate": null,
+    "component": "WebpageSummarizationModule"
+  }
+]

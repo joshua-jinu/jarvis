@@ -1,0 +1,5 @@
+Feature,Description,tech_stack,voice?,api_used,notes,first_added
+"chat + Voice Interaction",Interact via text/voice.,"next.js, TailwindCSS, web Speech API",yes,Google TTS (pyttsx3),supports commands and feedback,Mar 2024
+PDF Summary,upload PDF for Gemini to answer,"Python, FastAPI, PyMuPDF",no,Gemini,reads PDF & keeps context,April 2024
+spotify control,Play / pause / skip,"Spotify Web API",Yes,Spotify,needs user auth,2024-05
+webpage summarization,URL scrape and answer,"newspaper3k, bs4",yes,,,
