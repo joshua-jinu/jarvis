@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center, #000 50%, #0a0f15 100%);
+  color: #00ffff;
+  font-family: "Orbitron", sans-serif;
+  overflow: hidden;
+}
+
+/* === Fullscreen Layout === */
+.jarvis-layout {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === OUTERMOST BORDER === */
+.outer-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid rgba(0, 255, 255, 0.5);
+  box-shadow:
+    0 0 40px rgba(0, 255, 255, 0.5),
+    inset 0 0 30px rgba(0, 255, 255, 0.3),
+    0 0 60px rgba(0, 255, 255, 0.3);
+  pointer-events: none;
+  animation: outerPulse 5s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+/* === JARVIS Logo === */
+.jarvis-logo {
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: cyan;
+  text-shadow: 0 0 15px cyan, 0 0 25px #00bfff;
+  animation: flicker 2s infinite alternate;
+  z-index: 5;
+}
+
+/* === Main Container === */
+.jarvis-container {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  background: rgba(15, 20, 30, 0.8);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.25),
+    inset 0 0 15px rgba(0, 255, 255, 0.15);
+  animation: glow-pulse 3s infinite alternate;
+  z-index: 3;
+}
+
+/* === Overlay Frame === */
+.overlay-frame {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px solid rgba(0, 255, 255, 0.35);
+  border-radius: 25px;
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.25),
+    inset 0 0 10px rgba(0, 255, 255, 0.15);
+  pointer-events: none;
+  animation: overlayPulse 4s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+/* === Title === */
+.title {
+  font-size: 2.4rem;
+  color: #00ffff;
+  text-shadow: 0 0 18px cyan, 0 0 30px #0077ff;
+  margin-bottom: 1.5rem;
+}
+
+/* === Input === */
+.input-box {
+  width: 90%;
+  padding: 1rem;
+  border-radius: 15px;
+  border: 2px solid cyan;
+  background: rgba(0, 0, 0, 0.7);
+  color: cyan;
+  text-align: center;
+  font-size: 1.1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.input-box:focus {
+  box-shadow: 0 0 10px cyan;
+}
+
+/* === Buttons === */
+.button-group {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mic-btn,
+.exec-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.mic-btn {
+  background: linear-gradient(90deg, #00bfff, #0077ff);
+  font-size: 1.3rem;
+}
+
+.mic-btn.listening {
+  background: linear-gradient(90deg, #ff007f, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff;
+}
+
+.exec-btn {
+  background: linear-gradient(90deg, #00bfff, #0077ff);
+  font-size: 1rem;
+}
+
+.exec-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px cyan;
+}
+
+/* === Response === */
+.response-box {
+  margin-top: 2rem;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
+  min-height: 80px;
+  transition: all 0.5s ease;
+}
+
+.response-title {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px cyan;
+}
+
+.response-text {
+  font-size: 1.1rem;
+  color: #bafcff;
+  text-shadow: 0 0 4px #00ffff;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+/* === Footer === */
+.jarvis-footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: cyan;
+  font-size: 0.9rem;
+  text-shadow: 0 0 8px #00ffff, 0 0 15px #0077ff;
+  animation: footerPulse 3s ease-in-out infinite alternate;
+  z-index: 5;
+}
+
+/* === Boot Loading Screen === */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #000 50%, #030b12 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: cyan;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  z-index: 9999;
+  animation: fadeOut 1s ease-in-out 3s forwards;
+}
+
+.jarvis-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+}
+
+.outer-arc,
+.inner-arc {
+  position: absolute;
+  border: 3px solid transparent;
+  border-top: 3px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  box-shadow: 0 0 25px #00ffff;
+}
+
+.outer-arc {
+  width: 120px;
+  height: 120px;
+}
+
+.inner-arc {
+  width: 80px;
+  height: 80px;
+  top: 20px;
+  left: 20px;
+  border-top-color: #00ccff;
+  animation-duration: 1.5s;
+}
+
+.core-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  transform: translate(-50%, -50%);
+  background: #00ffff;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #00ffff, 0 0 40px #00ccff;
+}
+
+.boot-title {
+  font-size: 1.3rem;
+  background: linear-gradient(90deg, #00ffcc, #00aaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px #00ffff;
+}
+
+.boot-sub {
+  font-size: 0.9rem;
+  color: #66ffff;
+  opacity: 0.85;
+  margin-top: 10px;
+}
+
+/* === Animations === */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes outerPulse {
+  from {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4),
+      inset 0 0 25px rgba(0, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 70px rgba(0, 255, 255, 0.6),
+      inset 0 0 45px rgba(0, 255, 255, 0.4);
+  }
+}
+
+@keyframes overlayPulse {
+  from {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.25),
+      inset 0 0 10px rgba(0, 255, 255, 0.15);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4),
+      inset 0 0 15px rgba(0, 255, 255, 0.25);
+  }
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
+@keyframes glow-pulse {
+  from { box-shadow: 0 0 18px cyan; }
+  to { box-shadow: 0 0 30px #00ffff; }
+}
+
+@keyframes footerPulse {
+  from { text-shadow: 0 0 8px #00ffff, 0 0 15px #0077ff; }
+  to { text-shadow: 0 0 15px #00ffff, 0 0 25px #00ccff; }
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .title { font-size: 1.7rem; }
+  .input-box { font-size: 1rem; width: 100%; }
+  .exec-btn, .mic-btn { font-size: 0.9rem; padding: 0.7rem 1rem; }
+}
